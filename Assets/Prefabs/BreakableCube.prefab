@@ -12,8 +12,7 @@ GameObject:
   - component: {fileID: 4696175302620999119}
   - component: {fileID: 4696175302620999118}
   - component: {fileID: 4696175302620999117}
-  - component: {fileID: 4696175302620999116}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BreakableCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,16 +96,3 @@ MonoBehaviour:
   NumberOfPoints: 5
   ShardPrefab: {fileID: 1000012764827010, guid: d5764dcfc1cb54bb185b45906b106b18,
     type: 3}
---- !u!65 &4696175302620999116
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4696175302620999115}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
