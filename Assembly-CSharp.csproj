@@ -65,6 +65,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CatcherController.cs" />
+    <Compile Include="Assets\Scripts\StageManager.cs" />
+    <None Include="Assets\Shaders\SelectionBoxShader.shader" />
     <None Include="Assets\Shaders\GridPlaneShader.shader" />
     <Reference Include="UnityEngine">
       <HintPath>/Applications/2019.4.13f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.dll</HintPath>

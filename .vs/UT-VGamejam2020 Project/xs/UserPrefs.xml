@@ -1,18 +1,22 @@
-﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Shaders/GridPlaneShader.shader">
+﻿<Properties StartupConfiguration="{0B4F9A89-388A-0E8B-A6FD-C9FC35CB9D1D}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/StageManager.cs">
     <Files>
-      <File FileName="Assets/Shaders/GridPlaneShader.shader" Line="1" Column="1" />
+      <File FileName="Assets/Shaders/GridPlaneShader.shader" Line="51" Column="147" />
+      <File FileName="Assets/Scripts/CatcherController.cs" Line="16" Column="29" />
+      <File FileName="Assets/Shaders/SelectionBoxShader.shader" Line="52" Column="33" />
+      <File FileName="Assets/Scripts/StageManager.cs" Line="7" Column="12" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="UT-VGamejam2020 Project" selected="True" />
+          <Node name="UT-VGamejam2020 Project" expanded="True" selected="True" />
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="df76a82a-e84b-475e-96b0-19d67885629a" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
