@@ -105,7 +105,8 @@ public class BreakableObjectController : MonoBehaviour
             var shard = Instantiate(ShardPrefab);
 
             shard.transform.SetParent(transform, false);
-
+            shard.layer = gameObject.layer;
+            shard.SetActive(false);
             shard.transform.localPosition = Vector3.zero;
             shard.transform.localRotation = Quaternion.identity;
             shard.transform.localScale = Vector3.one;
@@ -114,7 +115,6 @@ public class BreakableObjectController : MonoBehaviour
 
             shard.GetComponentInChildren<MeshFilter>().sharedMesh = mesh;
             //shard.GetComponentInChildren<MeshRenderer>().sharedMaterial = GetComponent<MeshRenderer>().sharedMaterial;
-            shard.SetActive(false);
 
             transform.localScale = Vector3.one;
 
@@ -126,14 +126,19 @@ public class BreakableObjectController : MonoBehaviour
     {
         HitPoint--;
         if (HitPoint < 1)
-            Explode(pos);
+        {
+            Explode(transform.position);
+        }
     }
 
-    public void Explode(Vector3 position,float ExplosionRadius=1f,float ExplosionForce=1f)
+    public void Explode(Vector3 position,float ExplosionRadius=5f,float ExplosionForce=500f)
     {
-        foreach (var shard in Physics.OverlapSphere(position, ExplosionRadius))
+        GetComponent<MeshRenderer>().enabled = false;
+        for(int i=0;i<transform.childCount;i++)
         {
+            var shard = transform.GetChild(i);
             shard.gameObject.SetActive(true);
+            shard.parent = null;
 
             var rb = shard.GetComponent<Rigidbody>();
 
@@ -141,5 +146,6 @@ public class BreakableObjectController : MonoBehaviour
             rb.AddExplosionForce(ExplosionForce, position, ExplosionRadius);
             Destroy(shard.gameObject, 3f);
         }
+        Destroy(gameObject);
     }
 }

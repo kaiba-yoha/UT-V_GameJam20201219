@@ -23,9 +23,14 @@ public class StageManager : MonoBehaviour
     public Dictionary<Vector2Int, GameObject> GridData = new Dictionary<Vector2Int, GameObject>();
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         InitializeGrid();
+    }
+
+    private void Start()
+    {
+        StartGame();
     }
 
     void InitializeGrid()
@@ -52,5 +57,17 @@ public class StageManager : MonoBehaviour
     public void Regist(Vector2Int pos, GameObject obj)
     {
         GridData[pos]=obj;
+    }
+
+    public void StartGame()
+    {
+        FindObjectOfType<CharacterController>().BePlayable();
+        FindObjectOfType<CatcherController>().BePlayable();
+    }
+
+    public void EndGame()
+    {
+        FindObjectOfType<CharacterController>().BeUnPlayable();
+        FindObjectOfType<CatcherController>().BeUnPlayable();
     }
 }
