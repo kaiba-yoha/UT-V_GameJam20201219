@@ -10,6 +10,17 @@ public enum SEID
 
 public class SoundManager : MonoBehaviour
 {
+    public static SoundManager Instance
+    {
+        get
+        {
+            if (m_Instance == null)
+                m_Instance = FindObjectOfType<SoundManager>();
+            return m_Instance;
+        }
+    }
+    static SoundManager m_Instance;
+
     [SerializeField] AudioSource bgmAudioSource;
     [SerializeField] AudioSource seAudioSource;
 

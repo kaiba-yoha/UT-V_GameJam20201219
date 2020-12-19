@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CatcherController : MonoBehaviour
 {
+    [SerializeField]
+    Vector2Int InitPos;
 
     public Vector2Int SelectingPos = Vector2Int.zero;
 
@@ -24,7 +26,13 @@ public class CatcherController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Initialize();
+    }
+
+    public void Initialize()
+    {
+        SelectingPos = InitPos;
+        UpdateSelection();
     }
 
     public void BePlayable()

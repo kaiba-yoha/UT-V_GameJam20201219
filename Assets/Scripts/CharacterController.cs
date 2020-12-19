@@ -23,12 +23,16 @@ public class CharacterController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        Initialize();
+    }
+
+    public void Initialize()
+    {
         currentPosition = InitialPos;
         Vector3 init = StageManager.Instance.GetCenterPos3D(InitialPos);
         init.y = 0;
         transform.position = init;
         StageManager.Instance.Regist(InitialPos, gameObject);
-
     }
 
     public void BePlayable()
@@ -92,7 +96,13 @@ if (input.magnitude > 0)
         transform.rotation = Quaternion.LookRotation(diff);
 
         if (!StageManager.Instance.GridData.ContainsKey(currentPosition + direction))
-            return false;
+        {
+            currentPosition += direction;
+            StartCoroutine(MovedeltaPosition(StageManager.Instance.GetCenterPos3D(currentPosition), MoveDelay));
+            StageManager.Instance.Escaped();
+            return true;
+        }
+
         if (StageManager.Instance.GridData[currentPosition + direction] != null)
             return false;
 
@@ -124,6 +134,7 @@ if (input.magnitude > 0)
         if (obj == null)
             return false;
         obj.GetComponent<BreakableObjectController>().GetAttacked(StageManager.Instance.GetCenterPos3D(currentPosition));
+        SoundManager.Instance.PlayBrakeBlockSE();
         return true;
     }
 }
