@@ -10,6 +10,8 @@ public class CharacterController : MonoBehaviour
     Vector3 currentPosition;
     Animator animator;
     Vector3 direction;
+    [SerializeField] float distance = 3f; // 飛ばす&表示するRayの長さ
+    [SerializeField] AudioClip naguruVoice;
 
     // Use this for initialization
     void Start()
@@ -28,14 +30,16 @@ public class CharacterController : MonoBehaviour
             direction = new Vector3(x,0,0);
             //animator.CrossFadeInFixedTime("Run",0);
             animator.SetBool("isRun",true);
-        }
-        else if(z != 0) {
+        } else if(z != 0) {
             direction = new Vector3(0,0,z);
             //animator.CrossFadeInFixedTime("Run",0);
             animator.SetBool("isRun",true);
         } else if(x == 0 && z == 0) {
             //animator.CrossFadeInFixedTime("Idle",0);
             animator.SetBool("isRun",false);
+        }
+        else if(Input.GetKeyDown(KeyCode.LeftShift)) {
+            BlockwoNagure();
         }
 
 
@@ -46,5 +50,25 @@ public class CharacterController : MonoBehaviour
         Vector3 diff = transform.position - currentPosition;
         transform.rotation = Quaternion.LookRotation(diff);
         currentPosition = transform.position;
+
+        RaycastForward();
+    }
+
+    void RaycastForward()
+    {
+
+        Ray ray = new Ray(transform.position,transform.forward);
+        Debug.DrawRay(ray.origin,ray.direction * distance,Color.blue);
+
+        RaycastHit hit = new RaycastHit();
+        if(Physics.Raycast(ray,out hit,distance)) {
+            GameObject hitObject = hit.collider.gameObject;
+            Debug.Log(hitObject.name);
+        }
+    }
+
+    void BlockwoNagure()
+    {
+        //rayが当たっているブロックの破壊メソッドを呼ぶ
     }
 }
