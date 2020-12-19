@@ -15,6 +15,9 @@ public class CatcherController : MonoBehaviour
     [SerializeField]
     GameObject SelectionObj;
 
+    [SerializeField]
+    GameObject BlockPrefab;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +28,11 @@ public class CatcherController : MonoBehaviour
     {
         while (true)
         {
+            if (Input.GetButton("Placement"))
+            {
+                PlaceCube();
+            }
+
             Vector2Int input = new Vector2Int(Mathf.RoundToInt(Input.GetAxis("2PHorizontal")), Mathf.RoundToInt(Input.GetAxis("2PVertical")));
             if (input.magnitude > 0)
             {
@@ -37,6 +45,15 @@ public class CatcherController : MonoBehaviour
                 yield return null;
         }
 
+    }
+
+    void PlaceCube()
+    {
+        if (StageManager.Instance.GridData[SelectingPos] != null)
+            return;
+
+        GameObject obj = Instantiate(BlockPrefab, StageManager.Instance.GetCenterPos3D(SelectingPos), Quaternion.identity);
+        StageManager.Instance.Regist(SelectingPos, obj);
     }
 
     void UpdateSelection()

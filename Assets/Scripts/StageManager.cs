@@ -15,19 +15,28 @@ public class StageManager : MonoBehaviour
     }
     static StageManager m_Instance;
 
-    public float GridSize = 1f;
-    public Dictionary<Vector2Int, GameObject> GridData;
+    [SerializeField]
+    float GridSize = 1f;
+    [SerializeField]
+    Vector2Int GridNum;
+
+    public Dictionary<Vector2Int, GameObject> GridData = new Dictionary<Vector2Int, GameObject>();
 
     // Start is called before the first frame update
     void Start()
     {
-
+        InitializeGrid();
     }
 
-    // Update is called once per frame
-    void Update()
+    void InitializeGrid()
     {
-
+        for (int x = 0; x < GridNum.x; x++)
+        {
+            for (int y = 0; y < GridNum.y; y++)
+            {
+                GridData.Add(new Vector2Int(x, y), null);
+            }
+        }
     }
 
     public Vector2 GetCenterPos2D(Vector2Int pos)
@@ -38,5 +47,10 @@ public class StageManager : MonoBehaviour
     public Vector3 GetCenterPos3D(Vector2Int pos)
     {
         return new Vector3((float)pos.x + GridSize / 2, GridSize / 2, (float)pos.y + GridSize / 2);
+    }
+
+    public void Regist(Vector2Int pos, GameObject obj)
+    {
+        GridData[pos]=obj;
     }
 }
